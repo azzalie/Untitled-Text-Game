@@ -37,6 +37,7 @@ public class InventoryLoop {
 
             displayInventoryMenu();
             String command = InputHandler.getUserInput();
+            System.out.println("--------------------------------\n\n");
 
             if (command.equalsIgnoreCase("i")) {
                 running = false;
@@ -74,8 +75,8 @@ public class InventoryLoop {
 
     private void displayInventoryMenu() {
         System.out.println();
-        System.out.println("i.Закрыть инвентарь");
-        System.out.println("d.Выбросить текущий предмет");
+        System.out.println("[i]Закрыть инвентарь");
+        System.out.println("[d]Выбросить текущий предмет");
         System.out.print("|> ");
     }
 }

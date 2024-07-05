@@ -7,8 +7,10 @@ public class Main {
         while (running) {
             displayMenu();
             String command = InputHandler.getUserInput();
+            System.out.println("--------------------------------\n\n");
 
             if (command.matches("n")) {
+                showIntro();
                 Location startingLocation = locationConstructor.getLocation("Центр");
                 GameLoop gameLoop = new GameLoop(locationConstructor, startingLocation);
                 gameLoop.start();
@@ -28,6 +30,30 @@ public class Main {
         }
 
         InputHandler.closeScanner();
+    }
+
+    private static void showIntro() {
+        System.out.println(
+                """
+                        +---------------------Цель игры:---------------------+
+                        |    >Ваша задача - собрать уникальные предметы      |
+                        |    >Предметы находятся в разных локациях и у НПС   |
+                        |    >Найдите их и доставьте в центр                 |
+                        +----------------------------------------------------+
+                        """
+        );
+        System.out.println(
+                """
+                        +------Обозначения:------+
+                        |      <Заголовки>       |
+                        |       ^Описания^       |
+                        |    ... действие ...    |
+                        |        !ошибки!        |
+                        |    [m]Команды меню     |
+                        |    |> строка ввода     |
+                        +------------------------+
+                        """
+        );
     }
 
     private static void displayMenu() {

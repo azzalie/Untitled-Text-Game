@@ -19,6 +19,7 @@ public class NPCLoop {
 
             displayNpcMenu();
             String command = InputHandler.getUserInput();
+            System.out.println("--------------------------------\n\n");
 
             if (command.equalsIgnoreCase("n")) {
                 running = false;
@@ -42,7 +43,7 @@ public class NPCLoop {
 
     private void displayNpcMenu() {
         System.out.println();
-        System.out.println("n.Уйти от NPC");
+        System.out.println("[n]Уйти от NPC");
         System.out.print("|> ");
     }
 }

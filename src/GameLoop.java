@@ -1,13 +1,15 @@
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GameLoop {
-    private final LocationConstructor locationConstructor;
     private final Player player;
+    private final LocationConstructor locationConstructor;
     private final ItemConstructor itemConstructor = new ItemConstructor();
 
     public GameLoop(LocationConstructor locationConstructor, Location startingLocation) {
         this.locationConstructor = locationConstructor;
-        this.player = new Player(startingLocation);
+        player = new Player(startingLocation);
     }
 
     public void start() {
@@ -33,13 +35,11 @@ public class GameLoop {
             List<NPC> npcs = currentLocation.getNpcs();
             if (!npcs.isEmpty()) {
                 System.out.println("<В локации есть NPC>");
-//                for (NPC npc : npcs) {
-//                    System.out.println(npc.getName());
-//                }
             }
 
             displayGameMenu(currentLocation);
             String command = InputHandler.getUserInput();
+            System.out.println("--------------------------------\n\n");
 
             if (command.equalsIgnoreCase("x")) {
                 running = false;
@@ -77,16 +77,34 @@ public class GameLoop {
             }
 
             System.out.println();
+
+            if (isGameWon()) {
+                running = false;
+                System.out.println("\n... !!!игра пройдена!!! ...\n");
+            }
         }
+    }
+
+    private boolean isGameWon() {
+        Location centerLocation = locationConstructor.getLocation("Центр");
+        if (centerLocation != null) {
+            List<Item> itemsInCenter = centerLocation.getItems();
+            Set<String> uniqueItemNames = new HashSet<>();
+            for (Item item : itemsInCenter) {
+                uniqueItemNames.add(item.getName());
+            }
+            return uniqueItemNames.size() >= 4;
+        }
+        return false;
     }
 
     private void displayGameMenu(Location currentLocation) {
         System.out.println();
-        System.out.println("i.Открыть инвентарь");
+        System.out.println("[i]Открыть инвентарь");
         if (!currentLocation.getNpcs().isEmpty()) {
-            System.out.println("n.NPC");
+            System.out.println("[n]NPC");
         }
-        System.out.println("x.Завершить игру");
+        System.out.println("[x]Завершить игру");
         System.out.print("|> ");
     }
 }
