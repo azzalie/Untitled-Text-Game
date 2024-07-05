@@ -19,15 +19,20 @@ public class InventoryLoop {
         while (running) {
             System.out.println("<Инвентарь>");
             List<String> items = inventory.getItems();
+
             if (items.isEmpty()) {
                 System.out.println("*пусто*");
+
             } else {
                 for (String item : items) {
                     System.out.println(item);
+
                     if (currentItem != null && currentItem.equalsIgnoreCase(item)) {
                         Item currentItemObject = itemConstructor.getItem(currentItem);
+
                         if (currentItemObject != null) {
                             System.out.println("^" + currentItemObject.getDescription() + "^");
+
                         } else {
                             System.out.println("!неизвестный предмет!");
                         }
@@ -35,47 +40,55 @@ public class InventoryLoop {
                 }
             }
 
-            displayInventoryMenu();
+            displayMenu();
             String command = InputHandler.getUserInput();
+            System.out.println("--------------------------------\n\n");
 
             if (command.equalsIgnoreCase("i")) {
                 running = false;
+
             } else if (command.equalsIgnoreCase("d")) {
                 if (currentItem != null) {
                     Item droppedItem = itemConstructor.createItem(currentItem);
+
                     if (droppedItem != null) {
                         currentLocation.addItem(droppedItem);
                         inventory.removeItem(currentItem);
                         currentItem = null;
                         System.out.println("... предмет выброшен ...");
+
                     } else {
                         System.out.println("!ошибка при удалении предмета!");
                     }
+
                 } else {
                     System.out.println("!не выбран предмет!");
                 }
+
             } else {
                 if (items.contains(command)) {
                     currentItem = command;
                     Item item = itemConstructor.getItem(currentItem);
+
                     if (item != null) {
                         System.out.println("^" + item.getDescription() + "^");
+
                     } else {
                         System.out.println("!неизвестный предмет!");
                     }
+
                 } else {
                     System.out.println("!неверный выбор!");
                 }
             }
-
             System.out.println();
         }
     }
 
-    private void displayInventoryMenu() {
+    private void displayMenu() {
         System.out.println();
-        System.out.println("i.Закрыть инвентарь");
-        System.out.println("d.Выбросить текущий предмет");
+        System.out.println("[i]Закрыть инвентарь");
+        System.out.println("[d]Выбросить текущий предмет");
         System.out.print("|> ");
     }
 }

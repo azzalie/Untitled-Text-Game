@@ -11,14 +11,17 @@ public class NPCLoop {
 
     public void start() {
         boolean running = true;
+
         while (running) {
             System.out.println("<NPC в локации>");
+
             for (NPC npc : npcs) {
                 System.out.println(npc.getName());
             }
 
-            displayNpcMenu();
+            displayMenu();
             String command = InputHandler.getUserInput();
+            System.out.println("--------------------------------\n\n");
 
             if (command.equalsIgnoreCase("n")) {
                 running = false;
@@ -35,14 +38,13 @@ public class NPCLoop {
                     System.out.println("\n!неверный выбор!\n");
                 }
             }
-
             System.out.println();
         }
     }
 
-    private void displayNpcMenu() {
+    private void displayMenu() {
         System.out.println();
-        System.out.println("n.Уйти от NPC");
+        System.out.println("[n]Уйти от NPC");
         System.out.print("|> ");
     }
 }
