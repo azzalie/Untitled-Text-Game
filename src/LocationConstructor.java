@@ -8,8 +8,12 @@ public class LocationConstructor {
         locations = new HashMap<>();
         initializeLocations();
         LocationRoute.initializeRoutes(this);
+
         ItemConstructor itemConstructor = new ItemConstructor();
         ItemLocationSetup.setupItems(this, itemConstructor);
+
+        NPCConstructor npcConstructor = new NPCConstructor();
+        NPCLocationSetup.setupNpcs(this, npcConstructor);
     }
 
     private void initializeLocations() {

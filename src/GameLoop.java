@@ -30,7 +30,15 @@ public class GameLoop {
                 }
             }
 
-            displayGameMenu();
+            List<NPC> npcs = currentLocation.getNpcs();
+            if (!npcs.isEmpty()) {
+                System.out.println("<NPC в локации>");
+                for (NPC npc : npcs) {
+                    System.out.println(npc.getName());
+                }
+            }
+
+            displayGameMenu(currentLocation);
             String command = InputHandler.getUserInput();
 
             if (command.equalsIgnoreCase("x")) {
@@ -39,6 +47,9 @@ public class GameLoop {
             } else if (command.equalsIgnoreCase("i")) {
                 InventoryLoop inventoryLoop = new InventoryLoop(player.getInventory(), itemConstructor, currentLocation); // Передаем currentLocation
                 inventoryLoop.start();
+            } else if (command.equalsIgnoreCase("n") && !currentLocation.getNpcs().isEmpty()) {
+                NPCLoop npcLoop = new NPCLoop(currentLocation.getNpcs());
+                npcLoop.start();
             } else {
                 String itemName = command.trim();
                 Item itemToTake = null;
@@ -69,9 +80,12 @@ public class GameLoop {
         }
     }
 
-    private void displayGameMenu() {
+    private void displayGameMenu(Location currentLocation) {
         System.out.println();
         System.out.println("i.Открыть инвентарь");
+        if (!currentLocation.getNpcs().isEmpty()) {
+            System.out.println("n.NPC");
+        }
         System.out.println("x.Завершить игру");
         System.out.print("|> ");
     }
