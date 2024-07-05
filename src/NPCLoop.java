@@ -2,9 +2,11 @@ import java.util.List;
 
 public class NPCLoop {
     private final List<NPC> npcs;
+    private final Player player;
 
-    public NPCLoop(List<NPC> npcs) {
+    public NPCLoop(List<NPC> npcs, Player player) {
         this.npcs = npcs;
+        this.player = player;
     }
 
     public void start() {
@@ -23,7 +25,8 @@ public class NPCLoop {
             } else {
                 for (NPC npc : npcs) {
                     if (npc.getName().equalsIgnoreCase(command)) {
-                        CurrentNPCLoop currentNPCLoop = new CurrentNPCLoop(npc);
+                        CurrentNPCLoop currentNPCLoop =
+                                new CurrentNPCLoop(npc, player);
                         currentNPCLoop.start();
                         break;
                     }

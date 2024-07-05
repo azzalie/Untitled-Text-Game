@@ -1,27 +1,29 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NPCConstructor {
-    private final List<NPC> npcs;
+    private final Map<String, NPC> npcs;
+    private final NPCReplicasContent replicasContent = new NPCReplicasContent();
 
-    public NPCConstructor() {
-        this.npcs = new ArrayList<>();
+    public NPCConstructor(ItemConstructor itemConstructor) {
+        npcs = new HashMap<>();
         initializeNpcs();
+        ItemNPCSetup.setupItems(this, itemConstructor);
     }
 
     private void initializeNpcs() {
-        npcs.add(new NPC("НПС I", "Описание НПС I", "еще нет"));
-        npcs.add(new NPC("НПС II", "Описание НПС II", "еще нет"));
-        npcs.add(new NPC("НПС III", "Описание НПС III", "еще нет"));
-        npcs.add(new NPC("НПС IV", "Описание НПС IV", "еще нет"));
+        NPC npcI = new NPC("НПС I", "Описание НПС I", replicasContent.getReplicaForNpcI());
+        NPC npcII = new NPC("НПС II", "Описание НПС II", replicasContent.getReplicaForNpcII());
+        NPC npcIII = new NPC("НПС III", "Описание НПС III", replicasContent.getReplicaForNpcIII());
+        NPC npcIV = new NPC("НПС IV", "Описание НПС IV", replicasContent.getReplicaForNpcIV());
+
+        npcs.put(npcI.getName().toLowerCase(), npcI);
+        npcs.put(npcII.getName().toLowerCase(), npcII);
+        npcs.put(npcIII.getName().toLowerCase(), npcIII);
+        npcs.put(npcIV.getName().toLowerCase(), npcIV);
     }
 
     public NPC getNpc(String name) {
-        for (NPC npc : npcs) {
-            if (npc.getName().equalsIgnoreCase(name)) {
-                return npc;
-            }
-        }
-        return null;
+        return npcs.get(name.toLowerCase());
     }
 }

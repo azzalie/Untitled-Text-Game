@@ -32,10 +32,10 @@ public class GameLoop {
 
             List<NPC> npcs = currentLocation.getNpcs();
             if (!npcs.isEmpty()) {
-                System.out.println("<NPC в локации>");
-                for (NPC npc : npcs) {
-                    System.out.println(npc.getName());
-                }
+                System.out.println("<В локации есть NPC>");
+//                for (NPC npc : npcs) {
+//                    System.out.println(npc.getName());
+//                }
             }
 
             displayGameMenu(currentLocation);
@@ -48,7 +48,7 @@ public class GameLoop {
                 InventoryLoop inventoryLoop = new InventoryLoop(player.getInventory(), itemConstructor, currentLocation); // Передаем currentLocation
                 inventoryLoop.start();
             } else if (command.equalsIgnoreCase("n") && !currentLocation.getNpcs().isEmpty()) {
-                NPCLoop npcLoop = new NPCLoop(currentLocation.getNpcs());
+                NPCLoop npcLoop = new NPCLoop(currentLocation.getNpcs(), player);
                 npcLoop.start();
             } else {
                 String itemName = command.trim();

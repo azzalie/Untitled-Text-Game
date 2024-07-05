@@ -12,7 +12,7 @@ public class LocationConstructor {
         ItemConstructor itemConstructor = new ItemConstructor();
         ItemLocationSetup.setupItems(this, itemConstructor);
 
-        NPCConstructor npcConstructor = new NPCConstructor();
+        NPCConstructor npcConstructor = new NPCConstructor(itemConstructor);
         NPCLocationSetup.setupNpcs(this, npcConstructor);
     }
 
