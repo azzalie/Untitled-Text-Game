@@ -1,4 +1,15 @@
+/**
+ * Класс ItemNPCSetup отвечает за распределение начальных предметов NPC
+ */
 public class ItemNPCSetup {
+    /**
+     * Распределяет начальные предметы NPC
+     *
+     * @param npcConstructor
+     *         Конструктор NPC
+     * @param itemConstructor
+     *         Конструктор предметов
+     */
     public static void setupItems(NPCConstructor npcConstructor, ItemConstructor itemConstructor) {
         NPC npcI = npcConstructor.getNpc("НПС I");
         npcI.addInitialGiftItem(itemConstructor.createItem("Предмет II"));

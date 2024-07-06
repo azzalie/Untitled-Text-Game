@@ -1,17 +1,34 @@
+/**
+ * Класс CurrentNPCLoop отвечает за взаимодействие с выбранным NPC
+ */
 public class CurrentNPCLoop {
     private final NPC npc;
     private final Player player;
 
+    /**
+     * Конструктор CurrentNPCLoop
+     *
+     * @param npc
+     *         NPC, с которым происходит взаимодействие
+     * @param player
+     *         Игрок
+     */
     public CurrentNPCLoop(NPC npc, Player player) {
         this.npc = npc;
         this.player = player;
     }
 
+    /**
+     * Отображает меню для взаимодействия с NPC
+     */
     public static void displayMenu() {
         System.out.println("[n]Отойти");
         System.out.print("|> ");
     }
 
+    /**
+     * Запускает цикл взаимодействия с NPC
+     */
     public void start() {
         boolean running = true;
 
@@ -43,6 +60,9 @@ public class CurrentNPCLoop {
         }
     }
 
+    /**
+     * Передает начальные предметы NPC игроку
+     */
     private void giveInitialGiftItems() {
         for (Item item : npc.getInitialGiftItems()) {
             player.getInventory().takeItem(item);

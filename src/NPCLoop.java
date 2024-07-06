@@ -1,14 +1,28 @@
 import java.util.List;
 
+/**
+ * Класс NPCLoop отвечает за управление взаимодействием с NPC
+ */
 public class NPCLoop {
     private final List<NPC> npcs;
     private final Player player;
 
+    /**
+     * Конструктор NPCLoop
+     *
+     * @param npcs
+     *         Список NPC в текущей локации
+     * @param player
+     *         Игрок
+     */
     public NPCLoop(List<NPC> npcs, Player player) {
         this.npcs = npcs;
         this.player = player;
     }
 
+    /**
+     * Запускает цикл взаимодействия с NPC
+     */
     public void start() {
         boolean running = true;
 
@@ -42,6 +56,9 @@ public class NPCLoop {
         }
     }
 
+    /**
+     * Отображает меню для взаимодействия с NPC
+     */
     private void displayMenu() {
         System.out.println();
         System.out.println("[n]Уйти от NPC");

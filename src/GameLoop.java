@@ -2,16 +2,30 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Класс GameLoop отвечает за основной игровой цикл
+ */
 public class GameLoop {
     private final Player player;
     private final LocationConstructor locationConstructor;
     private final ItemConstructor itemConstructor = new ItemConstructor();
 
+    /**
+     * Конструктор GameLoop
+     *
+     * @param locationConstructor
+     *         Конструктор локаций
+     * @param startingLocation
+     *         Начальная локация игрока
+     */
     public GameLoop(LocationConstructor locationConstructor, Location startingLocation) {
         this.locationConstructor = locationConstructor;
         player = new Player(startingLocation);
     }
 
+    /**
+     * Запускает основной игровой цикл
+     */
     public void start() {
         boolean running = true;
 
@@ -96,6 +110,11 @@ public class GameLoop {
         }
     }
 
+    /**
+     * Проверяет, выиграл ли игрок.
+     *
+     * @return true, если игрок выиграл, иначе false
+     */
     private boolean isGameWon() {
         Location centerLocation = locationConstructor.getLocation("Центр");
 
@@ -111,6 +130,12 @@ public class GameLoop {
         return false;
     }
 
+    /**
+     * Отображает меню игры
+     *
+     * @param currentLocation
+     *         Текущая локация игрока
+     */
     private void displayMenu(Location currentLocation) {
         System.out.println();
         System.out.println("[i]Открыть инвентарь");

@@ -1,11 +1,24 @@
 import java.util.List;
 
+/**
+ * Класс InventoryLoop отвечает за управление инвентарем
+ */
 public class InventoryLoop {
     private final Inventory inventory;
     private final ItemConstructor itemConstructor;
     private final Location currentLocation;
     private String currentItem;
 
+    /**
+     * Конструктор InventoryLoop
+     *
+     * @param inventory
+     *         Инвентарь игрока
+     * @param itemConstructor
+     *         Конструктор предметов
+     * @param currentLocation
+     *         Текущая локация игрока
+     */
     public InventoryLoop(Inventory inventory, ItemConstructor itemConstructor, Location currentLocation) {
         this.inventory = inventory;
         this.currentItem = null;
@@ -13,6 +26,9 @@ public class InventoryLoop {
         this.currentLocation = currentLocation;
     }
 
+    /**
+     * Запускает цикл управления инвентарем
+     */
     public void start() {
         boolean running = true;
 
@@ -85,6 +101,9 @@ public class InventoryLoop {
         }
     }
 
+    /**
+     * Отображает меню инвентаря
+     */
     private void displayMenu() {
         System.out.println();
         System.out.println("[i]Закрыть инвентарь");

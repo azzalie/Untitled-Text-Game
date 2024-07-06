@@ -1,4 +1,15 @@
+/**
+ * Класс ItemLocationSetup отвечает за распределение предметов по локациям
+ */
 public class ItemLocationSetup {
+    /**
+     * Распределяет предметы по локациям
+     *
+     * @param locationConstructor
+     *         Конструктор локаций
+     * @param itemConstructor
+     *         Конструктор предметов
+     */
     public static void setupItems(LocationConstructor locationConstructor, ItemConstructor itemConstructor) {
         Location locationI = locationConstructor.getLocation("Вершина I");
         locationI.addItem(itemConstructor.createItem("Предмет IV"));

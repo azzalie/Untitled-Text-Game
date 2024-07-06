@@ -1,4 +1,13 @@
+/**
+ * Класс LocationRoute отвечает за установку связей между локациями
+ */
 public class LocationRoute {
+    /**
+     * Инициализирует связи между локациями
+     *
+     * @param locationConstructor
+     *         Конструктор локаций
+     */
     public static void initializeRoutes(LocationConstructor locationConstructor) {
         Location locationC = locationConstructor.getLocation("Центр");
         Location locationI = locationConstructor.getLocation("Вершина I");

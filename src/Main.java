@@ -1,7 +1,13 @@
+/**
+ * Главный класс игры
+ */
 public class Main {
     private static final LocationConstructor locationConstructor =
             new LocationConstructor();
 
+    /**
+     * Точка входа в программу
+     */
     public static void main(String[] args) {
         boolean running = true;
 
@@ -30,6 +36,9 @@ public class Main {
         InputHandler.closeScanner();
     }
 
+    /**
+     * Выводит вступительное предисловие с описанием игры и обозначениями
+     */
     private static void showIntro() {
         System.out.println(
                 """
@@ -54,12 +63,21 @@ public class Main {
         );
     }
 
-    private static void startGame(String startLocation) {
-        Location startingLocation = locationConstructor.getLocation(startLocation);
+    /**
+     * Запускает игру с указанной стартовой локацией
+     *
+     * @param name
+     *         Название стартовой локации
+     */
+    private static void startGame(String name) {
+        Location startingLocation = locationConstructor.getLocation(name);
         GameLoop gameLoop = new GameLoop(locationConstructor, startingLocation);
         gameLoop.start();
     }
 
+    /**
+     * Отображает главное меню игры
+     */
     private static void displayMenu() {
         System.out.println("n.Начать игру");
         System.out.println("c.Продолжить игру");

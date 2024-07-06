@@ -1,9 +1,15 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Класс LocationConstructor отвечает за создание и хранение локаций в игре
+ */
 public class LocationConstructor {
     private final Map<String, Location> locations;
 
+    /**
+     * Конструктор LocationConstructor
+     */
     public LocationConstructor() {
         locations = new HashMap<>();
         initializeLocations();
@@ -16,6 +22,9 @@ public class LocationConstructor {
         NPCLocationSetup.setupNpcs(this, npcConstructor);
     }
 
+    /**
+     * Инициализирует список локаций
+     */
     private void initializeLocations() {
         Location locationC = new Location("Центр", "Центральная локация");
         Location locationI = new Location("Вершина I", "Первая вершина");
@@ -30,6 +39,14 @@ public class LocationConstructor {
         locations.put(locationIV.getName().toLowerCase(), locationIV);
     }
 
+    /**
+     * Возвращает объект Location по его названию
+     *
+     * @param name
+     *         Название локации
+     *
+     * @return Объект Location, если он найден, иначе null
+     */
     public Location getLocation(String name) {
         return locations.get(name.toLowerCase());
     }
